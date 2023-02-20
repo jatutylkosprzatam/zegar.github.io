@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Odliczanie czasu do ślubu</title>
+	<style>
+		body {
+			background-color: #ffc0cb;
+			font-size: 50px;
+			text-align: center;
+			padding-top: 20%;
+		}
+	</style>
+</head>
+<body>
+	<h2>DO ŚLUBU BUDZICHA POZOSTAŁO:</h2>
+	<div id="countdown"></div>
+	<script>
+		// Ustaw datę odliczania
+		var countDownDate = new Date("2023-07-01T12:00:00Z").getTime();
+
+		// Zaktualizuj licznik co 1 sekundę
+		var x = setInterval(function() {
+
+			// Pobierz obecną datę i czas
+			var now = new Date().getTime();
+
+			// Oblicz odległość czasową między obecną datą a datą odliczania
+			var distance = countDownDate - now;
+
+			// Oblicz dni, godziny, minuty i sekundy pozostałe do daty odliczania
+			var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+			var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+			var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+			var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+			// Wyświetl wynik w elemencie o id "countdown"
+			document.getElementById("countdown").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+
+			// Wyświetl komunikat po osiągnięciu daty odliczania
+			if (distance < 0) {
+				clearInterval(x);
+				document.getElementById("countdown").innerHTML = "ŚLUB BUDZICHA JUŻ SIĘ ODBYŁ!";
+			}
+		}, 1000);
+	</script>
+</body>
+</html>
